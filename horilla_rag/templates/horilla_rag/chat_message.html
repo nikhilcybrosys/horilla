@@ -1,0 +1,15 @@
+<div class="oh-rag-chat__msg oh-rag-chat__msg--user">
+  {{ query }}
+</div>
+<div class="oh-rag-chat__msg oh-rag-chat__msg--bot">
+  {% if error %}
+    <span class="text-danger">{{ error }}</span>
+  {% else %}
+    {{ response }}
+    {% if sources %}
+      <div class="oh-rag-chat__sources">
+        <small class="text-muted">Sources: {{ sources }}</small>
+      </div>
+    {% endif %}
+  {% endif %}
+</div>

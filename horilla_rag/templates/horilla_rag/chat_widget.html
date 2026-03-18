@@ -1,0 +1,47 @@
+{% load static i18n %}
+
+<div id="rag-chat-widget" class="oh-rag-chat" x-data="{ open: false }">
+  <!-- Toggle Button -->
+  <button
+    class="oh-rag-chat__toggle"
+    @click="open = !open"
+    title="{% trans 'AI Assistant' %}"
+  >
+    <ion-icon name="chatbubble-ellipses-outline" style="font-size: 24px;"></ion-icon>
+  </button>
+
+  <!-- Chat Panel -->
+  <div class="oh-rag-chat__panel" x-show="open" x-cloak @click.away="open = false">
+    <div class="oh-rag-chat__header">
+      <span>{% trans "Horilla AI Assistant" %}</span>
+      <button @click="open = false" class="oh-rag-chat__close">&times;</button>
+    </div>
+
+    <div class="oh-rag-chat__messages" id="rag-chat-messages">
+      <div class="oh-rag-chat__msg oh-rag-chat__msg--bot">
+        {% trans "Hi! I can help you with HR queries — leave balance, policies, attendance, and more. Ask me anything!" %}
+      </div>
+    </div>
+
+    <form
+      class="oh-rag-chat__input-area"
+      hx-post="{% url 'rag-chat' %}"
+      hx-target="#rag-chat-messages"
+      hx-swap="beforeend"
+      hx-on::after-request="this.reset(); document.getElementById('rag-chat-messages').scrollTop = document.getElementById('rag-chat-messages').scrollHeight;"
+    >
+      {% csrf_token %}
+      <input
+        type="text"
+        name="query"
+        class="oh-rag-chat__input"
+        placeholder="{% trans 'Ask a question...' %}"
+        autocomplete="off"
+        required
+      />
+      <button type="submit" class="oh-rag-chat__send">
+        <ion-icon name="send-outline"></ion-icon>
+      </button>
+    </form>
+  </div>
+</div>

@@ -77,3 +77,10 @@ gunicorn
 psycopg2-binary
 whitenoise
 django-storages
+
+# RAG & MCP
+pgvector==0.3.6
+openai>=1.82.0
+tiktoken>=0.9.0
+mcp[cli]>=1.9.2
+httpx-sse>=0.4.0

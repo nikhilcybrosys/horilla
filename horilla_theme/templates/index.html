@@ -145,6 +145,12 @@
             {% include "floating_button.html" %}
         </div>
 
+        <!-- RAG AI Chat Widget -->
+        {% if rag_chat_enabled %}
+          {% include "horilla_rag/chat_widget.html" %}
+          <link rel="stylesheet" href="{% static 'horilla_rag/css/chat_widget.css' %}">
+        {% endif %}
+
         <!-- Main Content -->
         <div class="ml-[4.7rem] h-screen overflow-auto">
             <div>

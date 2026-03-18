@@ -84,8 +84,21 @@ INSTALLED_APPS = [
     "report",
     "whatsapp",
     "horilla_ldap",
+    "horilla_rag",
+    "horilla_mcp",
 ]
 
+# ========================================
+# RAG & MCP CONFIGURATION
+# ========================================
+OPENAI_API_KEY = env("OPENAI_API_KEY", default="")
+RAG_EMBEDDING_MODEL = "text-embedding-3-large"
+RAG_EMBEDDING_DIMENSIONS = 1536
+RAG_CHUNK_MAX_TOKENS = 512
+RAG_CHUNK_OVERLAP = 50
+RAG_DEFAULT_TOP_K = 5
+MCP_SERVER_NAME = "horilla-hr"
+OPENAI_API_KEY = "this_is_my_open_api_key"
 # ========================================
 # REST FRAMEWORK CONFIGURATION
 # ========================================
@@ -221,6 +234,7 @@ TEMPLATES = [
                 "base.context_processors.enable_late_come_early_out_tracking",
                 "base.context_processors.enable_profile_edit",
                 "horilla_crumbs.context_processors.breadcrumbs",
+                "horilla_rag.context_processors.rag_chat_enabled",
             ],
             "loaders": [
                 (
